@@ -111,7 +111,7 @@ class Default_EtapaController extends Zend_Controller_Action
      
     $etapas = $this->_db->select()
                    ->from(array('e' => 'etapas'), array('e.id','e.mes','e.ano'))
-                   ->joinInner(array('p' => 'partidas'), 'e.id = p.id_etapa',  array('duplas' => 'COUNT(*)'))
+                   ->joinLeft(array('p' => 'partidas'), 'e.id = p.id_etapa',  array('duplas' => 'COUNT(p.id_etapa)'))
                    ->group('e.id')->group('e.mes')->group('e.ano')
                    ->setIntegrityCheck(false);
                        
