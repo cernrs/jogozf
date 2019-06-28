@@ -1,0 +1,10 @@
+<div style="margin:20px;">
+
+<?php
+    $sMostra = 'none';
+    if ($this->msgErro) $sMostra = '';
+?>
+<div id="mensagem" style="display:<?=$sMostra?>"><?=$this->msgErro?></div>
+
+<?php echo $this->form;?>
+</div>
