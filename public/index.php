@@ -10,8 +10,10 @@ defined('APPLICATION_ENV')
 
 // Ensure library/ is on include_path
 
-defined('LIBRARY_PATH')
- || define('LIBRARY_PATH', realpath(dirname(__FILE__) . '/../library'));
+// defined('LIBRARY_PATH')
+//  || define('LIBRARY_PATH', realpath(dirname(__FILE__) . '/../library'));
+
+ set_include_path(implode(PATH_SEPARATOR, array(realpath(APPLICATION_PATH . '/../library'), get_include_path())));
 
 /** Zend_Application */
 require_once 'Zend/Application.php';
@@ -23,3 +25,5 @@ $application = new Zend_Application(
 );
 $application->bootstrap()
             ->run();
+
+
