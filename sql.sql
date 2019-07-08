@@ -35,24 +35,24 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: duplas; Type: TABLE; Schema: public; Owner: postgres
+-- Name: dupla; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.duplas (
+CREATE TABLE public.dupla (
     id integer NOT NULL,
-    id_etapa integer,
-    id_jogador1 integer,
-    id_jogador2 integer
+    id_etapa integer NOT NULL,
+    id_jogador1 integer NOT NULL,
+    id_jogador2 integer NOT NULL
 );
 
 
-ALTER TABLE public.duplas OWNER TO postgres;
+ALTER TABLE public.dupla OWNER TO postgres;
 
 --
--- Name: duplas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: dupla_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.duplas_id_seq
+CREATE SEQUENCE public.dupla_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -61,33 +61,33 @@ CREATE SEQUENCE public.duplas_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.duplas_id_seq OWNER TO postgres;
+ALTER TABLE public.dupla_id_seq OWNER TO postgres;
 
 --
--- Name: duplas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: dupla_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.duplas_id_seq OWNED BY public.duplas.id;
+ALTER SEQUENCE public.dupla_id_seq OWNED BY public.dupla.id;
 
 
 --
--- Name: etapas; Type: TABLE; Schema: public; Owner: postgres
+-- Name: etapa; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.etapas (
+CREATE TABLE public.etapa (
     id integer NOT NULL,
-    mes integer,
-    ano integer
+    mes integer NOT NULL,
+    ano integer NOT NULL
 );
 
 
-ALTER TABLE public.etapas OWNER TO postgres;
+ALTER TABLE public.etapa OWNER TO postgres;
 
 --
--- Name: etapas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: etapa_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.etapas_id_seq
+CREATE SEQUENCE public.etapa_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -96,33 +96,33 @@ CREATE SEQUENCE public.etapas_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.etapas_id_seq OWNER TO postgres;
+ALTER TABLE public.etapa_id_seq OWNER TO postgres;
 
 --
--- Name: etapas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: etapa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.etapas_id_seq OWNED BY public.etapas.id;
+ALTER SEQUENCE public.etapa_id_seq OWNED BY public.etapa.id;
 
 
 --
--- Name: jogadores; Type: TABLE; Schema: public; Owner: postgres
+-- Name: jogador; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.jogadores (
+CREATE TABLE public.jogador (
     id integer NOT NULL,
-    nome character varying(255),
-    pontuacao integer
+    nome character varying(150) NOT NULL,
+    pontuacao integer NOT NULL
 );
 
 
-ALTER TABLE public.jogadores OWNER TO postgres;
+ALTER TABLE public.jogador OWNER TO postgres;
 
 --
--- Name: jogadores_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: jogador_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.jogadores_id_seq
+CREATE SEQUENCE public.jogador_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -131,87 +131,41 @@ CREATE SEQUENCE public.jogadores_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.jogadores_id_seq OWNER TO postgres;
+ALTER TABLE public.jogador_id_seq OWNER TO postgres;
 
 --
--- Name: jogadores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: jogador_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.jogadores_id_seq OWNED BY public.jogadores.id;
-
-
---
--- Name: partidas; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.partidas (
-    id integer NOT NULL,
-    id_dupla1 integer,
-    pontos_dupla1 integer,
-    id_dupla2 integer,
-    pontos_dupla2 integer,
-    id_etapa integer,
-    chave character varying(1)
-);
-
-
-ALTER TABLE public.partidas OWNER TO postgres;
-
---
--- Name: partidas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.partidas_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.partidas_id_seq OWNER TO postgres;
-
---
--- Name: partidas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.partidas_id_seq OWNED BY public.partidas.id;
+ALTER SEQUENCE public.jogador_id_seq OWNED BY public.jogador.id;
 
 
 --
--- Name: duplas id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: dupla id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.duplas ALTER COLUMN id SET DEFAULT nextval('public.duplas_id_seq'::regclass);
-
-
---
--- Name: etapas id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.etapas ALTER COLUMN id SET DEFAULT nextval('public.etapas_id_seq'::regclass);
+ALTER TABLE ONLY public.dupla ALTER COLUMN id SET DEFAULT nextval('public.dupla_id_seq'::regclass);
 
 
 --
--- Name: jogadores id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: etapa id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.jogadores ALTER COLUMN id SET DEFAULT nextval('public.jogadores_id_seq'::regclass);
-
-
---
--- Name: partidas id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.partidas ALTER COLUMN id SET DEFAULT nextval('public.partidas_id_seq'::regclass);
+ALTER TABLE ONLY public.etapa ALTER COLUMN id SET DEFAULT nextval('public.etapa_id_seq'::regclass);
 
 
 --
--- Data for Name: duplas; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: jogador id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-COPY public.duplas (id, id_etapa, id_jogador1, id_jogador2) FROM stdin;
+ALTER TABLE ONLY public.jogador ALTER COLUMN id SET DEFAULT nextval('public.jogador_id_seq'::regclass);
+
+
+--
+-- Data for Name: dupla; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.dupla (id, id_etapa, id_jogador1, id_jogador2) FROM stdin;
 1	1	1	2
 2	1	3	4
 3	1	5	6
@@ -228,23 +182,36 @@ COPY public.duplas (id, id_etapa, id_jogador1, id_jogador2) FROM stdin;
 14	1	27	28
 15	1	29	30
 16	1	31	32
+17	2	17	18
+18	2	7	8
+19	2	11	12
+20	2	25	26
+21	2	1	2
+22	2	5	6
+23	2	19	20
+24	2	15	16
+25	2	21	33
+26	2	23	24
+27	2	9	10
+28	2	3	4
 \.
 
 
 --
--- Data for Name: etapas; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: etapa; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.etapas (id, mes, ano) FROM stdin;
+COPY public.etapa (id, mes, ano) FROM stdin;
 1	6	2019
+2	7	2019
 \.
 
 
 --
--- Data for Name: jogadores; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: jogador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.jogadores (id, nome, pontuacao) FROM stdin;
+COPY public.jogador (id, nome, pontuacao) FROM stdin;
 1	Wilda	200
 2	Rose	200
 3	Heloísa	80
@@ -273,70 +240,65 @@ COPY public.jogadores (id, nome, pontuacao) FROM stdin;
 28	Varlete	30
 29	Everton	210
 27	Tania	70
-103	Everton Catto	1200
 30	Fabrizio	210
 31	Vera	180
+32	Eduardo	200
+33	Valmocir	100
+4	Paulo	100
 \.
 
 
 --
--- Data for Name: partidas; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: dupla_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY public.partidas (id, id_dupla1, pontos_dupla1, id_dupla2, pontos_dupla2, id_etapa, chave) FROM stdin;
-5	11	\N	10	\N	1	A
-6	5	\N	10	\N	1	A
-7	15	\N	4	\N	1	B
-8	15	\N	12	\N	1	B
-9	15	\N	14	\N	1	B
-10	4	\N	12	\N	1	B
-11	4	\N	14	\N	1	B
-12	12	\N	14	\N	1	B
-13	16	\N	7	\N	1	C
-14	16	\N	2	\N	1	C
-15	16	\N	6	\N	1	C
-16	7	\N	2	\N	1	C
-17	7	\N	6	\N	1	C
-18	2	\N	6	\N	1	C
-19	1	\N	8	\N	1	D
-20	1	\N	3	\N	1	D
-21	1	\N	13	\N	1	D
-22	8	\N	3	\N	1	D
-23	8	\N	13	\N	1	D
-24	3	\N	13	\N	1	D
-1	9	120	11	156	1	A
-2	9	454	5	45	1	A
-3	9	54	10	544	1	A
-4	11	54	5	5	1	A
-\.
+SELECT pg_catalog.setval('public.dupla_id_seq', 28, true);
 
 
 --
--- Name: duplas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: etapa_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.duplas_id_seq', 16, true);
-
-
---
--- Name: etapas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.etapas_id_seq', 13, true);
+SELECT pg_catalog.setval('public.etapa_id_seq', 2, true);
 
 
 --
--- Name: jogadores_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: jogador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.jogadores_id_seq', 103, true);
+SELECT pg_catalog.setval('public.jogador_id_seq', 33, true);
 
 
 --
--- Name: partidas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: dupla dupla_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.partidas_id_seq', 24, true);
+ALTER TABLE ONLY public.dupla
+    ADD CONSTRAINT dupla_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: etapa etapa_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.etapa
+    ADD CONSTRAINT etapa_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: jogador jogador_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jogador
+    ADD CONSTRAINT jogador_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dupla dupla_id_etapa_etapa_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dupla
+    ADD CONSTRAINT dupla_id_etapa_etapa_id FOREIGN KEY (id_etapa) REFERENCES public.etapa(id);
 
 
 --

@@ -27,6 +27,7 @@
 $(document).ready(function() {  
     $.noConflict(); 
     $('#jogadores').DataTable({
+        "lengthMenu": [[25, 50, -1], [25, 50, "Todos"]],
         "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
             },

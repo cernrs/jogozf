@@ -1,0 +1,485 @@
+# schema.yml
+Jogador:
+  connection: 0
+  tableName: jogador
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: true
+    nome:
+      type: string(150)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pontuacao:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+
+Etapa:
+  tableName: etapa
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: true
+    mes:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    ano:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Dupla:
+      local: id
+      foreign: id_etapa
+      type: many
+
+Dupla:
+  tableName: dupla
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: true
+      primary: true
+      autoincrement: true
+    id_etapa:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    id_jogador1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    id_jogador2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+
+
+
+
+
+# Contact:
+#   connection: doctrine
+#   tableName: contact
+#   columns:
+
+#     id_contact:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: true
+#     nom:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     fonction_organisme:
+#       type: string(1000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     categorie:
+#       type: string(300)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     region:
+#       type: string(1000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     province:
+#       type: string(500)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     adresse:
+#       type: string(1000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     tel1:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     tel2:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     tel3:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     tel4:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     email:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     fax:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     ville:
+#       type: string(50)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     journal:
+#       type: string(2000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     commentaire:
+#       type: string(2000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     fix:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     image:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     owner:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#   relations:
+#     Evenement:
+#       local: id_contact
+#       foreign: id_contact_event
+#       type: many
+#     Users :
+#       class :   User
+#       refClass : OperationContact
+#       foreignAlias : Contact
+# Courrier:
+#   connection: doctrine
+#   tableName: courrier
+#   columns:
+#     num_serie:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: false
+#     annee:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: false
+#     num_c:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     exp:
+#       type: string(500)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     dest:
+#       type: string(500)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     state:
+#       type: string(10)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     objet:
+#       type: string(1000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     image_c:
+#       type: string(500)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     date_recep:
+#       type: date(25)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     date_env:
+#       type: date(25)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: false
+#       autoincrement: false
+#     owner_c:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     user_c:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     type_c:
+#       type: string(500)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#   relations :
+#     Users :
+#       class : User
+#       refClass : OperationC
+#       foreignAlias : Courriers
+# Evenement:
+#   connection: doctrine
+#   tableName: evenement
+#   columns:
+#     id_event:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: true
+#     date:
+#       type: date(25)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     action:
+#       type: string(2000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     id_contact_event:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#   relations:
+#     Contact:
+#       local: id_contact_event
+#       foreign: id_contact
+#       type: one
+# OperationC:
+#   connection: doctrine
+#   tableName: OperationC
+#   columns:
+#     id_user:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: false
+#     num_serie:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: false
+#     OperationC:
+#       type: string(2000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     date_op_c:
+#       type: date(25)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#   relations :
+#     User : { onDelete : CASCADE }
+#     Courrier : { onDelete : CASCADE }
+# OperationContact:
+#   connection: doctrine
+#   tableName: OperationContact
+#   columns:
+#     id_contact:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: false
+#     id_user:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: false
+#     operation:
+#       type: string(2000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     date_op:
+#       type: date(25)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#   relations :
+#     User : { onDelete : CASCADE }
+#     Courrier : { onDelete : CASCADE }
+# User:
+#   connection: doctrine
+#   tableName: user
+#   columns:
+#     id_user:
+#       type: integer(2)
+#       fixed: false
+#       unsigned: false
+#       primary: true
+#       autoincrement: true
+#     nom_user:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     adresse_user:
+#       type: string(2000)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     tel_user:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     login:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+#     password:
+#       type: string(30)
+#       fixed: false
+#       unsigned: false
+#       primary: false
+#       notnull: true
+#       autoincrement: false
+
+#shareimprove this answer
+
+

@@ -22,19 +22,15 @@ class Default_EtapaController extends Zend_Controller_Action
             if( $form->isValid( $dadosFormulario ) ) {  
                 
                 
-                // $dadosFormulario = $this->getRequest()->getPost();
-                // $etapas = $this->_db;
-                // $select  = $etapas->select()->where('mes = ?', $dadosFormulario['mes'])
-                //                             ->where('ano = ?', $dadosFormulario['ano']);
-                // $row = $etapas->fetchRow($select);
+                $dadosFormulario = $this->getRequest()->getPost();
                 
-                
-                // if($row){
-
-                //     $this->view->msgErro = 'Já existe uma etapa cadastrada neste mês para este ano';
-
-                // }else{
-   
+                $oEtapa = new Doctrine_Query();
+                $oEtapa->from('Model_Etapa')->where('mes = ?', $dadosFormulario['mes'])->addWhere('ano = ?', $dadosFormulario['ano']);
+                $row = $oEtapa->fetchOne();
+                               
+                if($row){
+                    $this->view->msgErro = 'Já existe uma etapa cadastrada neste mês para este ano';
+                }else{
 
                     $oEtapa = new Model_Etapa();
 
@@ -44,7 +40,7 @@ class Default_EtapaController extends Zend_Controller_Action
                     $oEtapa->save();
 
                     $this->_redirect( '/etapa/listagem' );              
-               // }
+               }
 
             } else {
                 $form->populate( $dadosFormulario );
@@ -75,9 +71,6 @@ class Default_EtapaController extends Zend_Controller_Action
 
                     $oInstanciaEtapa->save();
 
-        
-
-
                 $this->_redirect( '/etapa/listagem' );              
 
             } else {
@@ -107,27 +100,30 @@ class Default_EtapaController extends Zend_Controller_Action
             }
         }
 
-        $this->view->form = $form;
-
+       
     }
 
 
     public function listagemAction()
     {
-     
-    // $etapas = $this->_db->select()
-    //                ->from(array('e' => 'etapas'), array('e.id','e.mes','e.ano'))
-    //                ->joinLeft(array('p' => 'partidas'), 'e.id = p.id_etapa',  array('duplas' => 'COUNT(p.id_etapa)'))
-    //                ->group('e.id')->group('e.mes')->group('e.ano')
-    //                ->setIntegrityCheck(false);
-                       
-    // $result = $this->_db->fetchAll($etapas)->toArray();
-    // $this->view->etapas = $result;
+       
+       
+        $oEtapa = new Doctrine_Query();
+    
+        $oEtapa->select('e.*, COUNT(d.id) as duplas')
+                ->from('Model_Etapa e')
+                ->leftJoin('e.Dupla d')
+                ->groupBy('e.id, e.mes, e.ano'); 
+
+         //echo $oEtapa->getSqlQuery();
+         //die();
+
+       $result = $oEtapa->execute();
+       $this->view->etapas = $result;
 
     }
 
-
-    
+   
     public function excluirAction()
     {
         if( $this->getRequest()->getParam('id') ) {
